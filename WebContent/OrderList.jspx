@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<jsp:root xmlns:jsp="http://java.sun.com/JSP/Page" version="2.0"
+	xmlns:c="http://java.sun.com/jsp/jstl/core">
+	<jsp:directive.page contentType="text/html; charset=UTF-8"
+		pageEncoding="UTF-8" session="true" />
+	<jsp:output doctype-root-element="html"
+		doctype-public="-//W3C//DTD XHTML 1.0 Transitional//EN"
+		doctype-system="http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"
+		omit-xml-declaration="true" />
+	<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<title>Insert title here</title>
+
+</head>
+<body>
+	<table>
+		<c:forEach var="order" items="${requestScope.orders}">
+			<tr>
+				<td><c:out value="${order.date}" /></td>
+				<td>
+					<table>
+						<tr>
+							<th>Product Name</th>
+							<th>Amount</th>
+							<th>Price</th>
+							<th>Total Price</th>
+						</tr>
+						<c:forEach var="item" items="${order.items }">
+							<tr>
+								<td><c:out value="${item.product.name}"></c:out></td>
+								<td><c:out value="${item.amount}"></c:out></td>
+								<td><c:out value="${item.price}"></c:out></td>
+								<td><c:out value="${item.price * item.amount}"></c:out></td>
+							</tr>
+						</c:forEach>
+					</table>
+				</td>
+			</tr>
+		</c:forEach>
+	</table>
+</body>
+	</html>
+</jsp:root>
